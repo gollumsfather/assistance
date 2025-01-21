@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.template import loader
+from .models import Member
 
-# Create your views here.
+def members(request):
+  template = loader.get_template('main.html')
+  currentlogin=Member.objects.all().values()
+  context={
+    'members':currentlogin
+    }
+  return HttpResponse(template.render(context, request))
