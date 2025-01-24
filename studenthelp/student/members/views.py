@@ -1,7 +1,7 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from .models import Member
-from .forms import login
+from .forms import QuestionForm
 from django.shortcuts import render, redirect
 
 def members(request):
@@ -9,7 +9,6 @@ def members(request):
   currentlogin=Member.objects.all().values()
   context={
     'members':currentlogin,
-    'login' : login,
     }
   return HttpResponse(template.render(context, request))
 
@@ -17,11 +16,13 @@ def home(request):
   template = loader.get_template('home.html')
   return HttpResponse(template.render())
 
-def question(request):
-  if request.method=="POST":
-    form=question.post
-    if form.is_valid():
-        return render("home")
+def question_view(request):
+    if request.method == "POST":
+        form = QuestionForm(request.POST)
+        if form.is_valid():
+            questio = form.cleaned_data['question']
+            return HttpResponseRedirect(f"/home/?question={questio}")
     else:
-        form = NameForm()
-        return render(request, "main.html", {"form": form})
+        form = QuestionForm()
+
+    return render(request, "main.html", {"form": form})
