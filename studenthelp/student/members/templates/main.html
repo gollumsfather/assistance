@@ -1,12 +1,19 @@
 <!DOCTYPE html>
-<head>
-    <title>Studentassistance</title>
-</head>
-<body>
-    <h1>Enter information</h1>
-    <ul>
-  {% for x in members %}
-    <li>{{ x.firstname }}</li>
-  {% endfor %}
-</ul>
-</body>
+<html>
+    <head>
+        <title>Studentassistance</title>
+    </head>
+    <body>
+        <h1>Enter information</h1>
+        <ul>
+            {% for x in members %}
+                <li>{{ x.firstname }}</li>
+            {% endfor %}
+        </ul>
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>
