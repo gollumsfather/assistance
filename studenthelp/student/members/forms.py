@@ -9,4 +9,7 @@ choose =(
 
 class QuestionForm(forms.Form):
     question = forms.CharField(label="Your Question", max_length=100)
-    typeofquestion = forms.MultipleChoiceField(label="type of question", choices=choose)
+    typeofquestion = forms.MultipleChoiceField(label="Type of question", choices=choose)
+
+class AnswerForm(forms.Form):
+    answer = forms.CharField(label="answer", max_length=255)

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Math Questions</title>
+    </head>
+    <body>
+        <h1>Math Questions</h1>
+        {% for x in question %}
+            <li>{{ x }}</li>
+            <form action="{% url 'answer' %}" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Submit">
+            </form>
+        {% endfor %}
+    </body>
+</html>
