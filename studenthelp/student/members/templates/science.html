@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Math Questions</title>
+        <title>Science Questions</title>
     </head>
     <body>
-        <h1>Math Questions</h1>
+        <h1>Science Questions</h1>
         <ul>
             <ul>
             {% for question in questions %}
                 <li>Question: {{ question.questions }}</li>
                 <li>Answer: {{ question.answers }}</li>
-                <form action="{% url 'math' %}" method="post">
+                <form action="{% url 'science' %}" method="post">
                     {% csrf_token %}
                     <input type="hidden" name="question_id" value="{{ question.id }}">
                     <label for="answer">Update Answer:</label>
